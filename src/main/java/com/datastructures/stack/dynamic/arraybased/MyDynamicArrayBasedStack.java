@@ -1,11 +1,13 @@
 package com.datastructures.stack.dynamic.arraybased;
 
+import com.datastructures.stack.MyStack;
+
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class MyDynamicArrayBasedStack {
+class MyDynamicArrayBasedStack<E> implements MyStack<E> {
 
-    private final ArrayList<Object> list;
+    private final ArrayList<E> list;
 
     MyDynamicArrayBasedStack() {
         list = new ArrayList<>();
@@ -19,12 +21,12 @@ public class MyDynamicArrayBasedStack {
         return list.size();
     }
 
-    public Object top() throws NoSuchElementException {
+    public E top() throws NoSuchElementException {
         return list.getLast();
     }
 
-    public void push(Object obj) {
-        list.add(obj);
+    public void push(E item) {
+        list.add(item);
     }
 
     public void pop() throws NoSuchElementException {
