@@ -19,7 +19,7 @@ public interface MyStack<E> {
     int size();
 
     /**
-     * Removes all elements from the queue.
+     * Removes all elements from the stack.
      */
     void clear();
 
