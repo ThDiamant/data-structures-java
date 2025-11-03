@@ -19,6 +19,11 @@ public interface MyStack<E> {
     int size();
 
     /**
+     * Removes all elements from the queue.
+     */
+    void clear();
+
+    /**
      * @return The top element in the stack. If the stack is empty, it throws an exception.
      */
     E peek() throws EmptyStackException;
@@ -26,15 +31,15 @@ public interface MyStack<E> {
     /**
      * Pushes an element to the top of the stack.
      *
-     * @param item Item to be pushed in the stack
+     * @param item Item to be pushed in the stack.
      */
     void push(E item);
 
     /**
      * Retrieves and removes the top element from the stack. If the stack is empty the relevant exception is thrown.
      *
-     * @return The popped item
-     * @throws EmptyStackException when the stack is empty
+     * @return The popped item.
+     * @throws EmptyStackException when the stack is empty.
      */
     E pop() throws EmptyStackException;
 }

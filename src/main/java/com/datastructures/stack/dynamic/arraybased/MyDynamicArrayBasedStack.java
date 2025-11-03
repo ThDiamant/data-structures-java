@@ -20,6 +20,12 @@ class MyDynamicArrayBasedStack<E> implements MyStack<E> {
         return list.isEmpty();
     }
 
+    public void clear() {
+        while (!isEmpty()) {
+            pop();
+        }
+    }
+
     public int size() {
         return list.size();
     }

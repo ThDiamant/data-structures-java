@@ -30,6 +30,25 @@ class MyDynamicArrayBasedStackTest {
     }
 
     @Test
+    void testClearEmptiesStackWhenStackIsPopulated() {
+        MyDynamicArrayBasedStack<String> stack = new MyDynamicArrayBasedStack<>();
+        stack.push("string1");
+        stack.push("string2");
+        stack.push("string3");
+
+        stack.clear();
+        assertTrue(stack.isEmpty());
+    }
+
+    @Test
+    void testClearWorksOnEmptyStack() {
+        MyDynamicArrayBasedStack<Integer> stack = new MyDynamicArrayBasedStack<>();
+        stack.clear();
+
+        assertTrue(stack.isEmpty());
+    }
+
+    @Test
     void testSizeReturnsZeroWhenStackIsEmpty() {
         MyDynamicArrayBasedStack<Integer> stack = new MyDynamicArrayBasedStack<>();
         
