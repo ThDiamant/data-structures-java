@@ -1,9 +1,10 @@
 package com.datastructures.stack;
 
-import java.util.NoSuchElementException;
+import java.util.EmptyStackException;
 
 /**
- * My interface for the stack data structure.
+ * My interface for the stack data structure. Similar to Java's (outdated) Stack interface for learning purposes.
+ * Java interface: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html">...</a>
  */
 public interface MyStack<E> {
 
@@ -20,16 +21,20 @@ public interface MyStack<E> {
     /**
      * @return The top element in the stack. If the stack is empty, it throws an exception.
      */
-    E top() throws NoSuchElementException;
+    E peek() throws EmptyStackException;
 
     /**
-     * Pushes an element in the stack. If the stack is fixed size and full when this method is called, it throws an
-     * appropriate exception.
+     * Pushes an element to the top of the stack.
+     *
+     * @param item Item to be pushed in the stack
      */
     void push(E item);
 
     /**
-     * Removes the top element from the stack. If the stack is empty when this method is called, it throws an exception.
+     * Retrieves and removes the top element from the stack. If the stack is empty the relevant exception is thrown.
+     *
+     * @return The popped item
+     * @throws EmptyStackException when the stack is empty
      */
-    void pop() throws NoSuchElementException;
+    E pop() throws EmptyStackException;
 }

@@ -3,14 +3,17 @@ package com.datastructures.stack.dynamic.arraybased;
 import com.datastructures.stack.MyStack;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
+import java.util.EmptyStackException;
 
 class MyDynamicArrayBasedStack<E> implements MyStack<E> {
 
     private final ArrayList<E> list;
 
+    /**
+     * Creates an empty stack
+     */
     MyDynamicArrayBasedStack() {
-        list = new ArrayList<>();
+        this.list = new ArrayList<>();
     }
 
     public boolean isEmpty() {
@@ -21,7 +24,11 @@ class MyDynamicArrayBasedStack<E> implements MyStack<E> {
         return list.size();
     }
 
-    public E top() throws NoSuchElementException {
+    public E peek() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+
         return list.getLast();
     }
 
@@ -29,7 +36,14 @@ class MyDynamicArrayBasedStack<E> implements MyStack<E> {
         list.add(item);
     }
 
-    public void pop() throws NoSuchElementException {
+    public E pop() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+
+        E topItem = list.getLast();
         list.removeLast();
+
+        return topItem;
     }
 }
