@@ -30,7 +30,9 @@ public interface MyLinkedList<E> {
     void append(E e);
 
     /**
-     * Inserts an element into the specified index. If the index does not exist, an appropriate exception is thrown.
+     * Inserts an element into the specified index. If the specified position is populated, the element at the current
+     * position and any subsequent elements are shifted to the right. If the index does not exist, an appropriate
+     * exception is thrown.
      *
      * @param index Index we want to insert the element to.
      * @param e Element we want to insert to the list.
