@@ -138,12 +138,48 @@ class MySinglyLinkedListTest {
     }
 
     @Test
+    void testInsertThrowsExceptionWhenIndexIsNegative() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.insert(-1, "1"));
+    }
+
+    @Test
+    void testInsertThrowsExceptionWhenIndexIsLargerThanList() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.insert(5, "5"));
+    }
+
+    @Test
     void testInsertAtHeadWhenListIsEmpty() {
         MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
         list.insert(0, "1");
 
         assertEquals(1, list.size());
         assertEquals("1", list.get(0));
+    }
+
+    @Test
+    void testInsertAtHeadWhenListIsPopulated() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+
+        list.insert(0, "5");
+
+        assertEquals(5, list.size());
+        assertEquals("5", list.get(0));
+        assertEquals("1", list.get(1));
+        assertEquals("2", list.get(2));
+        assertEquals("3", list.get(3));
+        assertEquals("4", list.get(4));
     }
 
     @Test
@@ -172,12 +208,12 @@ class MySinglyLinkedListTest {
         list.append("3");
         list.append("4");
 
-        list.insert(1, "5");
+        list.insert(2, "5");
 
         assertEquals(5, list.size());
         assertEquals("1", list.get(0));
-        assertEquals("5", list.get(1));
-        assertEquals("2", list.get(2));
+        assertEquals("2", list.get(1));
+        assertEquals("5", list.get(2));
         assertEquals("3", list.get(3));
         assertEquals("4", list.get(4));
     }
