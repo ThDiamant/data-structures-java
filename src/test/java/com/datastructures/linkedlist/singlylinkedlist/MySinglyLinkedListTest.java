@@ -49,6 +49,15 @@ class MySinglyLinkedListTest {
     }
 
     @Test
+    void testAppendNullElement() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append(null);
+
+        assertEquals(1, list.size());
+        assertNull(list.get(0));
+    }
+
+    @Test
     void testAppendSingleElement() {
         MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
         list.append("1");
@@ -219,6 +228,24 @@ class MySinglyLinkedListTest {
     }
 
     @Test
+    void testInsertNullElement() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+
+        list.insert(2, null);
+
+        assertEquals(5, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertNull(list.get(2));
+        assertEquals("3", list.get(3));
+        assertEquals("4", list.get(4));
+    }
+
+    @Test
     void testRemoveByIndexThrowsExceptionWhenIndexIsNegative() {
         MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
         list.append("1");
@@ -311,5 +338,24 @@ class MySinglyLinkedListTest {
         assertEquals("3", list.get(1));
         assertEquals("4", list.get(2));
         assertEquals("5", list.get(3));
+    }
+
+    @Test
+    void testMultipleInsertsAndRemovals() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+        String removedElement = list.removeByIndex(2);
+        list.insert(1, "6");
+        list.append("5");
+
+        assertEquals(5, list.size());
+        assertEquals("3", removedElement);
+        assertEquals("1", list.get(0));
+        assertEquals("6", list.get(1));
+        assertEquals("2", list.get(2));
+        assertEquals("4", list.get(3));
     }
 }
