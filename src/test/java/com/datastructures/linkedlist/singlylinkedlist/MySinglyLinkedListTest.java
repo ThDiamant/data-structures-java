@@ -217,4 +217,77 @@ class MySinglyLinkedListTest {
         assertEquals("3", list.get(3));
         assertEquals("4", list.get(4));
     }
+
+    @Test
+    void testRemoveByIndexThrowsExceptionWhenIndexIsNegative() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.removeByIndex(-1));
+    }
+
+    @Test
+    void testRemoveByIndexThrowsExceptionWhenListIsEmpty() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.removeByIndex(0));
+    }
+
+    @Test
+    void testRemoveByIndexThrowsExceptionWhenIndexLargerThanList() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.removeByIndex(5));
+    }
+
+    @Test
+    void testRemoveByIndexWithSingleElement() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+
+        list.removeByIndex(0);
+
+        assertEquals(0, list.size());
+        assertTrue(list.isEmpty());
+    }
+
+    @Test
+    void testRemoveByIndexWhenListIsPopulated() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+        list.append("5");
+
+        list.removeByIndex(2);
+
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
+    }
+
+    @Test
+    void testRemoveByIndexRemovesTailWhenListIsPopulated() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+        list.append("5");
+
+        list.removeByIndex(4);
+
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        assertEquals("4", list.get(3));
+    }
 }
