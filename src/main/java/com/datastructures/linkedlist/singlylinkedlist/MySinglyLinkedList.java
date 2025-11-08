@@ -40,6 +40,12 @@ class MySinglyLinkedList<E> implements MyLinkedList<E> {
     public E get(int index) throws IndexOutOfBoundsException {
         validateIndex(index);
 
+        MyNode<E> node = getNodeAtIndex(index);
+
+        return node.getData();
+    }
+
+    private MyNode<E> getNodeAtIndex(int index) {
         int c = 0;
         MyNode<E> node = this.head;
         while (c != index) {
@@ -47,7 +53,7 @@ class MySinglyLinkedList<E> implements MyLinkedList<E> {
             c += 1;
         }
 
-        return node.getData();
+        return node;
     }
 
     @Override
@@ -100,20 +106,9 @@ class MySinglyLinkedList<E> implements MyLinkedList<E> {
         size += 1;
     }
 
-    private MyNode<E> getNodePreviousToIndex(int index) {
-        int c = 0;
-        MyNode<E> node = this.head;
-        while (c != index - 1) {
-            node = node.getNext();
-            c += 1;
-        }
-
-        return node;
-    }
-
     private void insertNodeAtPopulatedIndex(int index, E e) {
         MyNode<E> newNode = new MyNode<>(e);
-        MyNode<E> nodePreviousToIndex = getNodePreviousToIndex(index);
+        MyNode<E> nodePreviousToIndex = getNodeAtIndex(index - 1);
         newNode.setNext(nodePreviousToIndex.getNext());
         nodePreviousToIndex.setNext(newNode);
         size += 1;
