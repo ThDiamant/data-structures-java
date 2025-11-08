@@ -249,8 +249,9 @@ class MySinglyLinkedListTest {
         MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
         list.append("1");
 
-        list.removeByIndex(0);
+        String removedElement = list.removeByIndex(0);
 
+        assertEquals("1", removedElement);
         assertEquals(0, list.size());
         assertTrue(list.isEmpty());
     }
@@ -264,8 +265,9 @@ class MySinglyLinkedListTest {
         list.append("4");
         list.append("5");
 
-        list.removeByIndex(2);
+        String removedElement = list.removeByIndex(2);
 
+        assertEquals("3", removedElement);
         assertEquals(4, list.size());
         assertEquals("1", list.get(0));
         assertEquals("2", list.get(1));
@@ -282,12 +284,32 @@ class MySinglyLinkedListTest {
         list.append("4");
         list.append("5");
 
-        list.removeByIndex(4);
+        String removedElement = list.removeByIndex(4);
 
+        assertEquals("5", removedElement);
         assertEquals(4, list.size());
         assertEquals("1", list.get(0));
         assertEquals("2", list.get(1));
         assertEquals("3", list.get(2));
         assertEquals("4", list.get(3));
+    }
+
+    @Test
+    void testRemoveByIndexRemovesHeadWhenListIsPopulated() {
+        MySinglyLinkedList<String> list = new MySinglyLinkedList<>();
+        list.append("1");
+        list.append("2");
+        list.append("3");
+        list.append("4");
+        list.append("5");
+
+        String removedElement = list.removeByIndex(0);
+
+        assertEquals("1", removedElement);
+        assertEquals(4, list.size());
+        assertEquals("2", list.get(0));
+        assertEquals("3", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
     }
 }

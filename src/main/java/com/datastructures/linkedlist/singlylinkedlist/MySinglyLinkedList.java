@@ -9,13 +9,6 @@ class MySinglyLinkedList<E> implements MyLinkedList<E> {
     private MyNode<E> tail;
     private int size = 0;
 
-    private void init(E e) {
-        this.head = new MyNode<>(e);
-        this.head.setNext(null);
-        this.tail = this.head;
-        this.size = 1;
-    }
-
     MySinglyLinkedList() {
         this.head = null;
         this.tail = null;
@@ -24,6 +17,13 @@ class MySinglyLinkedList<E> implements MyLinkedList<E> {
 
     MySinglyLinkedList(E e) {
         init(e);
+    }
+
+    private void init(E e) {
+        this.head = new MyNode<>(e);
+        this.head.setNext(null);
+        this.tail = this.head;
+        this.size = 1;
     }
 
     @Override
@@ -116,7 +116,43 @@ class MySinglyLinkedList<E> implements MyLinkedList<E> {
 
     @Override
     public E removeByIndex(int index) throws IndexOutOfBoundsException {
-        return null;
+        throwExceptionIfListIsEmpty();
+        validateIndex(index);
+
+        E removedValue;
+        if (index == 0) {
+            removedValue = this.head.getData();
+            if (size == 1) {
+                clear();
+            } else {
+                this.head = this.head.getNext();
+                size -= 1;
+            }
+        } else if (index == size - 1) {
+            removedValue = this.tail.getData();
+
+            this.tail = getNodeAtIndex(index - 1);
+            this.tail.setNext(null);
+            size -= 1;
+        } else {
+            MyNode<E> previousNode = getNodeAtIndex(index - 1);
+            MyNode<E> node = previousNode.getNext();
+            removedValue = node.getData();
+            previousNode.setNext(node.getNext());
+
+            node.setData(null);
+            node.setNext(null);
+
+            size -= 1;
+        }
+
+        return removedValue;
+    }
+
+    private void throwExceptionIfListIsEmpty() throws IndexOutOfBoundsException {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     private void validateIndex(int index) throws IndexOutOfBoundsException {

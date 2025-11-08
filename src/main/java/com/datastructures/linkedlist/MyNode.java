@@ -1,7 +1,7 @@
 package com.datastructures.linkedlist;
 
 public class MyNode<E> {
-    private final E data;
+    private E data;
     private MyNode<E> next;
 
     public MyNode(E data) {
@@ -10,6 +10,10 @@ public class MyNode<E> {
 
     public E getData() {
         return data;
+    }
+
+    public void setData(E e) {
+        this.data = e;
     }
 
     public MyNode<E> getNext() {
